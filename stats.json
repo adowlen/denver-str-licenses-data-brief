@@ -1,0 +1,601 @@
+{
+ "meta": {
+  "dataset": "ODC_short_term_rental_licenses_active_or_pending_renewal (Denver Open Data, ArcGIS FeatureServer layer 54)",
+  "publisher": "Department of Licensing and Consumer Protection (DLCP), City and County of Denver (formerly Excise and Licenses; the dataset is still published under the Excise and Licenses name)",
+  "snapshot": "warehouse snapshots/2026-10-19/str_licenses.parquet (pulled 2026-10-19T11:27:59Z)",
+  "prior_snapshot": "warehouse snapshots/2026-10-15/str_licenses.parquet (pulled 2026-10-15)",
+  "active_basis": "LICENSE_STATUS == 'License Issued - Active' exactly; no other status is counted as active",
+  "holder_key": "ENTITY_NAME normalized: uppercase, whitespace collapsed, punctuation spacing normalized",
+  "acs_denver_county_units": 359581,
+  "acs_units_allocated_to_neighborhoods": 359351.49999999994,
+  "product_rule": "aggregates only in every shipped file category (brief and social markdown, stats.json, data/, code/, charts/, hero): no licensee name, street address, parcel number, or TAX_ID value in any output; the raw register snapshot lives only in the warehouse, never in the package (fix loop F-1, 2026-10-19)"
+ },
+ "register": {
+  "rows": 2338,
+  "status_counter": {
+   "License Issued - Active": 2083,
+   "Delinquent": 137,
+   "Closed - Expired": 116,
+   "About to Expire": 1,
+   "Closed - Surrendered": 1
+  },
+  "status_shares_pct": {
+   "License Issued - Active": 89.09,
+   "Delinquent": 5.86,
+   "Closed - Expired": 4.96,
+   "About to Expire": 0.04,
+   "Closed - Surrendered": 0.04
+  },
+  "license_type_counter": {
+   "Short Term Rental": 2338
+  },
+  "distinct_license_nums": 2338
+ },
+ "drift_vs_2026_10_15": {
+  "prior_rows": 2349,
+  "prior_status_counter": {
+   "License Issued - Active": 2098,
+   "Delinquent": 133,
+   "Closed - Expired": 116,
+   "About to Expire": 1,
+   "Closed - Surrendered": 1
+  },
+  "rows_change": -11,
+  "active_change": -15,
+  "entered_license_nums": 1,
+  "left_license_nums": 12,
+  "continuing_license_nums": 2337,
+  "status_transitions_continuing": {
+   "About to Expire -> About to Expire": 1,
+   "Closed - Expired -> Closed - Expired": 115,
+   "Closed - Surrendered -> Closed - Surrendered": 1,
+   "Delinquent -> Closed - Expired": 1,
+   "Delinquent -> Delinquent": 130,
+   "Delinquent -> License Issued - Active": 2,
+   "License Issued - Active -> Delinquent": 7,
+   "License Issued - Active -> License Issued - Active": 2080
+  },
+  "entity_name_changes_continuing": 0,
+  "parcel_num_changes_continuing": 0
+ },
+ "parcel_bridge_fresh": {
+  "match_counter": {
+   "key": 2321,
+   "address_strict": 13,
+   "unmatched": 3,
+   "key (fresh, PARCEL_NUM)": 1
+  },
+  "matched_rows": 2335,
+  "unmatched_rows": 3,
+  "match_rate_pct": 99.87,
+  "note": "2,337 rows inherit the Phase 3 bridge by LICENSE_NUM; 1 entered row key-matched on PARCEL_NUM; the 3 Phase 3 unmatched rows remain unmatched"
+ },
+ "classification_active_licenses": {
+  "licenses": 2083,
+  "individual_name": {
+   "count": 2083,
+   "share_pct": 100.0
+  },
+  "business_entity_name": {
+   "count": 0,
+   "share_pct": 0.0
+  },
+  "not_determined": {
+   "count": 0,
+   "share_pct": 0.0
+  }
+ },
+ "classification_active_holders": {
+  "holders": 2080,
+  "individual_name": {
+   "count": 2080,
+   "share_pct": 100.0
+  },
+  "business_entity_name": {
+   "count": 0,
+   "share_pct": 0.0
+  },
+  "not_determined": {
+   "count": 0,
+   "share_pct": 0.0
+  }
+ },
+ "classification_register_licenses": {
+  "licenses": 2338,
+  "individual_name": {
+   "count": 2338,
+   "share_pct": 100.0
+  },
+  "business_entity_name": {
+   "count": 0,
+   "share_pct": 0.0
+  },
+  "not_determined": {
+   "count": 0,
+   "share_pct": 0.0
+  }
+ },
+ "classification_rule": {
+  "business_tokens": [
+   "AGENCY",
+   "APARTMENTS",
+   "ASSOC",
+   "ASSOCIATION",
+   "AUTHORITY",
+   "BANK",
+   "CAPITAL",
+   "CHURCH",
+   "CLUB",
+   "CO",
+   "COLLEGE",
+   "COMPANY",
+   "CONSTRUCTION",
+   "CONSULTING",
+   "CORP",
+   "CORPORATION",
+   "DEVELOPMENT",
+   "DISTRICT",
+   "ENTERPRISE",
+   "ENTERPRISES",
+   "ESTATES",
+   "FOUNDATION",
+   "GLOBAL",
+   "GROUP",
+   "HOLDING",
+   "HOLDINGS",
+   "HOMES",
+   "HOSPITAL",
+   "HOTEL",
+   "INC",
+   "INTERNATIONAL",
+   "INVESTMENT",
+   "INVESTMENTS",
+   "LLC",
+   "LLLP",
+   "LLP",
+   "LP",
+   "LTD",
+   "MANAGEMENT",
+   "MINISTRY",
+   "PARTNERS",
+   "PARTNERSHIP",
+   "PC",
+   "PLLC",
+   "PROPERTIES",
+   "PROPERTY",
+   "REALTY",
+   "RENTAL",
+   "RENTALS",
+   "RESIDENCES",
+   "SCHOOL",
+   "SERVICES",
+   "SOCIETY",
+   "SOLUTIONS",
+   "SUITES",
+   "TRUST",
+   "UNIVERSITY",
+   "VENTURE",
+   "VENTURES"
+  ],
+  "rule": "business if any name token is a business token; else individual if 2-5 alphabetic tokens; else not determined",
+  "scope": "classification of the ENTITY_NAME string as filed, not of beneficial ownership"
+ },
+ "concentration_active": {
+  "basis": "active licenses (LICENSE_STATUS = License Issued - Active)",
+  "licenses": 2083,
+  "distinct_holders": 2080,
+  "max_licenses_per_holder": 2,
+  "holders_by_band": {
+   "1": 2077,
+   "2": 3,
+   "3-5": 0,
+   "6-10": 0,
+   "11+": 0
+  },
+  "licenses_by_band": {
+   "1": 2077,
+   "2": 6,
+   "3-5": 0,
+   "6-10": 0,
+   "11+": 0
+  },
+  "top_shares_pct_of_licenses": {
+   "top_1": 0.1,
+   "top_5": 0.38,
+   "top_10": 0.62,
+   "top_25": 1.34
+  },
+  "share_held_by_holders_with_2plus_pct": 0.29,
+  "share_held_by_holders_with_5plus_pct": 0.0,
+  "licenses_whose_holder_has_exactly_1": 2077,
+  "share_whose_holder_has_exactly_1_pct": 99.71,
+  "holders_with_exactly_1": 2077,
+  "holders_with_2": 3
+ },
+ "concentration_register": {
+  "basis": "all register rows, every status",
+  "licenses": 2338,
+  "distinct_holders": 2333,
+  "max_licenses_per_holder": 2,
+  "holders_by_band": {
+   "1": 2328,
+   "2": 5,
+   "3-5": 0,
+   "6-10": 0,
+   "11+": 0
+  },
+  "licenses_by_band": {
+   "1": 2328,
+   "2": 10,
+   "3-5": 0,
+   "6-10": 0,
+   "11+": 0
+  },
+  "top_shares_pct_of_licenses": {
+   "top_1": 0.09,
+   "top_5": 0.43,
+   "top_10": 0.64,
+   "top_25": 1.28
+  },
+  "share_held_by_holders_with_2plus_pct": 0.43,
+  "share_held_by_holders_with_5plus_pct": 0.0,
+  "licenses_whose_holder_has_exactly_1": 2328,
+  "share_whose_holder_has_exactly_1_pct": 99.57,
+  "holders_with_exactly_1": 2328,
+  "holders_with_2": 5
+ },
+ "name_merge_sensitivity_active": {
+  "first_last_token_merge": {
+   "distinct_groups": 2080,
+   "max_licenses_per_group": 2,
+   "groups_with_2plus": 3,
+   "licenses_in_groups_with_2plus": 6,
+   "distribution": {
+    "1": 2077,
+    "2": 3
+   }
+  },
+  "initial_surname_overmerge": {
+   "distinct_groups": 2034,
+   "max_licenses_per_group": 4,
+   "groups_with_2plus": 43,
+   "licenses_in_groups_with_2plus": 92,
+   "distribution": {
+    "1": 1991,
+    "2": 39,
+    "3": 2,
+    "4": 2
+   }
+  }
+ },
+ "parcels_active": {
+  "basis": "active licenses",
+  "licenses_with_parcel": 2080,
+  "licenses_without_parcel": 3,
+  "distinct_parcels": 2008,
+  "parcels_with_multiple_licenses": 12,
+  "max_licenses_on_one_parcel": 32,
+  "licenses_on_multiple_license_parcels": 84,
+  "parcel_size_distribution_parcels_by_license_count": {
+   "1": 1996,
+   "2": 3,
+   "3": 4,
+   "4": 1,
+   "6": 2,
+   "18": 1,
+   "32": 1
+  },
+  "largest_parcel_neighborhood": "Union Station",
+  "largest_parcel_units_on_parcel_record": 579.0
+ },
+ "multi_parcel_holder_check": {
+  "multi_license_parcels_active": 12,
+  "licenses_on_those_parcels": 84,
+  "parcels_where_every_license_has_a_distinct_holder": 12,
+  "note": "on every multi-license parcel, each license sits under a different holder name; parcel stacking is not holder stacking"
+ },
+ "parcels_register": {
+  "basis": "all register rows",
+  "licenses_with_parcel": 2335,
+  "licenses_without_parcel": 3,
+  "distinct_parcels": 2255,
+  "parcels_with_multiple_licenses": 13,
+  "max_licenses_on_one_parcel": 35,
+  "licenses_on_multiple_license_parcels": 93,
+  "parcel_size_distribution_parcels_by_license_count": {
+   "1": 2242,
+   "2": 4,
+   "3": 3,
+   "4": 1,
+   "5": 1,
+   "6": 1,
+   "7": 1,
+   "19": 1,
+   "35": 1
+  },
+  "largest_parcel_neighborhood": "Union Station",
+  "largest_parcel_units_on_parcel_record": 579.0
+ },
+ "address_check_active": {
+  "distinct_address_strings": 2082,
+  "max_licenses_at_one_address_string": 2,
+  "address_strings_with_2plus": 1,
+  "note": "address strings keep unit identity; condo units at one building address are distinct strings when the unit is in the address"
+ },
+ "base_address_rollup_active": {
+  "basis": "active licenses grouped by normalized base address (unit designators stripped; see build code)",
+  "distinct_base_addresses": 1963,
+  "base_addresses_with_multiple_licenses": 39,
+  "licenses_on_multiple_license_base_addresses": 159,
+  "share_of_active_pct": 7.63,
+  "max_licenses_at_one_base_address": 17,
+  "multi_base_addresses_spanning_multiple_parcels": 27,
+  "multi_base_addresses_on_a_single_parcel": 12,
+  "every_license_a_distinct_holder_within_each_multi_group": true,
+  "size_distribution_base_addresses_by_license_count": {
+   "2": 21,
+   "3": 9,
+   "4": 1,
+   "6": 1,
+   "7": 1,
+   "8": 1,
+   "9": 2,
+   "13": 1,
+   "17": 2
+  },
+  "note": "a reviewer's crude rollup (UNIT/APT/STE/# designators only) gives 19 base addresses, 63 licenses, max 17, 13 spanning more than one parcel; the proper normalization also strips BLDG designators and bare trailing unit numbers, merging 124 more unit-variant addresses and so finding more building-level groups; the maximum (17) is the same under both"
+ },
+ "tot_units_1_parcel": {
+  "licenses_on_parcel": 4,
+  "distinct_holders": 4,
+  "distinct_raw_address_strings": 4,
+  "distinct_base_addresses": 2,
+  "all_licenses_addresses_carry_a_unit_designator": true,
+  "spine_record": {
+   "TOT_UNITS": 1.0,
+   "PROP_CLASS": "1230",
+   "D_CLASS_CN": "RESIDENTIAL-CONDOMINIUM",
+   "neighborhood": "Five Points",
+   "LAND_AREA_sqft": 72919.0,
+   "has_characteristics": false
+  },
+  "parcels_record": {
+   "appendage": "999 (the master-parcel appendage)",
+   "structure_type": "107: CONDO (FEE SIMPLE)",
+   "gross_area_sqft": 126465.0,
+   "commercial_original_year_built": 2018.0,
+   "legal_description_reading": "the legal description identifies the parcel as the master parcel of a condominium development"
+  },
+  "reading": "TOT_UNITS=1 sits on the master parcel record of a condominium development, not on a single-unit house record; the four licenses are four unit filings by four different holders whose addresses carry unit designators, assigned to the master parcel by the bridge. No address or parcel number is printed (product rule)."
+ },
+ "multi_parcel_tot_units_active": {
+  "basis": "active licenses; the 12 parcels carrying 2 or more active licenses",
+  "tot_units_on_those_parcels_sorted": [0, 1, 125, 218, 232, 274, 282, 282, 292, 319, 372, 579],
+  "range_excluding_the_two_master_or_common_element_records": "125 to 579 units on the other 10 parcels",
+  "tot_units_0_parcel": "one 2-license parcel whose assessor record is a vacant common-element parcel (TOT_UNITS 0)",
+  "provenance": "added at fix-loop closure (adversarial re-verification item N-1): the Finding 2 sentence quoting the 125 to 579 range and the TOT_UNITS 0 parcel previously had no stats.json figure; the values were recomputed independently by the adversarial reviewer from the warehouse spine during re-verification and are recorded in adversarial-review.md"
+ },
+ "neighborhoods": {
+  "active_licenses_with_neighborhood": 2080,
+  "active_licenses_without_neighborhood": 3,
+  "neighborhoods_total": 78,
+  "neighborhoods_with_1plus_active": 75,
+  "neighborhoods_with_zero_active": 3,
+  "zero_active_neighborhoods": [
+   "Auraria",
+   "Kennedy",
+   "Sun Valley"
+  ],
+  "citywide_active_per_1000_units": 5.8,
+  "top_by_count": [
+   {
+    "neighborhood": "Five Points",
+    "active_licenses": 151,
+    "acs_units": 15648.5,
+    "licenses_per_1000_units": 9.65
+   },
+   {
+    "neighborhood": "Highland",
+    "active_licenses": 112,
+    "acs_units": 7071.3,
+    "licenses_per_1000_units": 15.84
+   },
+   {
+    "neighborhood": "West Colfax",
+    "active_licenses": 105,
+    "acs_units": 7186.2,
+    "licenses_per_1000_units": 14.61
+   },
+   {
+    "neighborhood": "Berkeley",
+    "active_licenses": 88,
+    "acs_units": 4787.5,
+    "licenses_per_1000_units": 18.38
+   },
+   {
+    "neighborhood": "Sunnyside",
+    "active_licenses": 88,
+    "acs_units": 5327.5,
+    "licenses_per_1000_units": 16.52
+   },
+   {
+    "neighborhood": "Union Station",
+    "active_licenses": 73,
+    "acs_units": 8240.9,
+    "licenses_per_1000_units": 8.86
+   },
+   {
+    "neighborhood": "Gateway - Green Valley Ranch",
+    "active_licenses": 68,
+    "acs_units": 16720.6,
+    "licenses_per_1000_units": 4.07
+   },
+   {
+    "neighborhood": "West Highland",
+    "active_licenses": 62,
+    "acs_units": 5780.6,
+    "licenses_per_1000_units": 10.73
+   },
+   {
+    "neighborhood": "Whittier",
+    "active_licenses": 61,
+    "acs_units": 2251.0,
+    "licenses_per_1000_units": 27.1
+   },
+   {
+    "neighborhood": "Baker",
+    "active_licenses": 57,
+    "acs_units": 4202.0,
+    "licenses_per_1000_units": 13.56
+   },
+   {
+    "neighborhood": "Speer",
+    "active_licenses": 51,
+    "acs_units": 9332.9,
+    "licenses_per_1000_units": 5.46
+   },
+   {
+    "neighborhood": "Cole",
+    "active_licenses": 50,
+    "acs_units": 2019.8,
+    "licenses_per_1000_units": 24.75
+   }
+  ],
+  "top_by_rate_per_1000": [
+   {
+    "neighborhood": "Whittier",
+    "active_licenses": 61,
+    "acs_units": 2251.0,
+    "licenses_per_1000_units": 27.1
+   },
+   {
+    "neighborhood": "Cole",
+    "active_licenses": 50,
+    "acs_units": 2019.8,
+    "licenses_per_1000_units": 24.75
+   },
+   {
+    "neighborhood": "Skyland",
+    "active_licenses": 35,
+    "acs_units": 1774.3,
+    "licenses_per_1000_units": 19.73
+   },
+   {
+    "neighborhood": "Clayton",
+    "active_licenses": 35,
+    "acs_units": 1830.5,
+    "licenses_per_1000_units": 19.12
+   },
+   {
+    "neighborhood": "Berkeley",
+    "active_licenses": 88,
+    "acs_units": 4787.5,
+    "licenses_per_1000_units": 18.38
+   },
+   {
+    "neighborhood": "Sunnyside",
+    "active_licenses": 88,
+    "acs_units": 5327.5,
+    "licenses_per_1000_units": 16.52
+   },
+   {
+    "neighborhood": "Highland",
+    "active_licenses": 112,
+    "acs_units": 7071.3,
+    "licenses_per_1000_units": 15.84
+   },
+   {
+    "neighborhood": "West Colfax",
+    "active_licenses": 105,
+    "acs_units": 7186.2,
+    "licenses_per_1000_units": 14.61
+   },
+   {
+    "neighborhood": "Baker",
+    "active_licenses": 57,
+    "acs_units": 4202.0,
+    "licenses_per_1000_units": 13.56
+   },
+   {
+    "neighborhood": "Jefferson Park",
+    "active_licenses": 44,
+    "acs_units": 3418.7,
+    "licenses_per_1000_units": 12.87
+   },
+   {
+    "neighborhood": "Platt Park",
+    "active_licenses": 45,
+    "acs_units": 3519.6,
+    "licenses_per_1000_units": 12.79
+   },
+   {
+    "neighborhood": "Regis",
+    "active_licenses": 21,
+    "acs_units": 1844.5,
+    "licenses_per_1000_units": 11.39
+   }
+  ],
+  "top5_count_share_pct": 26.1,
+  "top10_count_share_pct": 41.5,
+  "median_neighborhood_rate_per_1000": 4.71,
+  "median_neighborhood_rate_basis": "median across all 78 neighborhoods, zero-license neighborhoods counted as 0 (verifier ledger row 69; fix loop 2026-10-19)",
+  "median_neighborhood_rate_per_1000_neighborhoods_with_licenses_only": 5.04,
+  "dia_active_licenses": 3
+ },
+ "vintage_active": {
+  "originally_issued_by_year": {
+   "2016": 31,
+   "2017": 73,
+   "2018": 65,
+   "2019": 129,
+   "2020": 88,
+   "2021": 179,
+   "2022": 247,
+   "2023": 258,
+   "2024": 247,
+   "2025": 401,
+   "2026": 365
+  },
+  "share_issued_2023_or_later_pct": 61.0,
+  "share_issued_2025_2026_pct": 36.8
+ },
+ "expiry_hygiene": {
+  "active_licenses_with_expiration_before_pull_date": 47,
+  "share_of_active_pct": 2.26,
+  "about_to_expire_rows": 1,
+  "past_expiration_cross_tab": {
+   "most_recently_issued_year_distribution": {
+    "2023": 2,
+    "2024": 16,
+    "2025": 20,
+    "2026": 9
+   },
+   "most_recently_issued_in_2025_2026": 29,
+   "reissued_after_printed_expiration_date": 4,
+   "expiration_lag_days_median": 230.0,
+   "expiration_lag_days_max": 1374,
+   "expiration_lag_over_one_year": 20
+  },
+  "note": "status and expiration fields are recorded as published; a past expiration date on an active-status row is a field disagreement in the register, printed without a compliance claim (cross-tab added in fix loop F-6, 2026-10-19)"
+ },
+ "fusion_permits": {
+  "layering_claim": "STR licenses and recent construction concentrate in the same neighborhoods; the claim needs the permits layer joined on the parcel spine and cannot be made from the license register alone",
+  "neighborhoods_compared": 75,
+  "spearman_str_rate_vs_new_building_permit_rate": 0.643,
+  "spearman_str_count_vs_new_building_permit_count": 0.622,
+  "spearman_str_rate_vs_new_building_permit_rate_incl_dia": 0.6,
+  "top10_rate_overlap": [
+   "Berkeley",
+   "Sunnyside",
+   "West Colfax"
+  ],
+  "permit_window": "new-building permits issued 2020-01-01 to 2026-10-12, surviving-parcel basis (spine v6), as built for the October 15, 2026 net housing change brief",
+  "str_parcels_with_new_building_permit_pct": 10.6,
+  "residential_parcels_with_new_building_permit_pct": 3.6,
+  "str_parcels_with_demolition_pct": 4.8,
+  "residential_parcels_with_demolition_pct": 1.3,
+  "str_parcel_count": 2008,
+  "residential_parcel_count": 209805,
+  "caveat": "parcel-level permit prevalence compares parcels as they stand at the 2026-10-15 spine snapshot; a permit on the parcel does not date the license, and no causal direction is claimed"
+ }
+}
